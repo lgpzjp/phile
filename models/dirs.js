@@ -21,3 +21,16 @@ exports.getAllDirs = (callback)=>{
         })(0);
     })
 }
+
+
+exports.getSyncAll = ()=>{
+    let allDirs = [];
+    let files = fs.readdirSync('./uploads');
+    for(file of files){
+        let stat = fs.statSync('./uploads/'+file);
+        if(stat.isDirectory()){
+            allDirs.push(file);
+        }
+    }
+    return allDirs;
+}
